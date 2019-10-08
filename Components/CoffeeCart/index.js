@@ -20,9 +20,13 @@ class CoffeeCart extends Component {
     return (
       <List>
         {cartItems}
-        <Button full danger onPress={() => this.props.checkout()}>
-          <Text>Checkout</Text>
-        </Button>
+        {cartItems.length ? (
+          <Button full danger onPress={this.props.checkout}>
+            <Text>Checkout</Text>
+          </Button>
+        ) : (
+          <Text>Thank you for ordering!</Text>
+        )}
       </List>
     );
   }
@@ -34,7 +38,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkout: () => dispatch(actionCreators.removeItem())
+    checkout: item => dispatch(actionCreators.checkout(item))
   };
 };
 export default connect(

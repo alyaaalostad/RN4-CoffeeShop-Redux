@@ -1,4 +1,4 @@
-import { REMOVE_ITEM, ADD_ITEM, CHECK_OUT } from "./types";
+import { REMOVE_ITEM, ADD_ITEM, CHECKOUT } from "./types";
 
 export const addItem = item => {
   return {
@@ -16,6 +16,6 @@ export const removeItem = item => {
 
 export const checkout = () => {
   return {
-    type: CHECK_OUT
+    type: CHECKOUT
   };
 };

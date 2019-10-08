@@ -18,9 +18,10 @@ import {
 // Style
 import styles from "./styles";
 
-//List
-import coffeeshops from "../CoffeeList/list";
+// //List
+// import coffeeshops from "../CoffeeList/list";
 import CartButton from "../CartButton";
+// import { threadId } from "worker_threads";
 
 class CoffeeDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -46,8 +47,13 @@ class CoffeeDetail extends Component {
     });
   };
 
-  handleClick = item => {
-    this.props.addItem(item);
+  handleClick = () => {
+    let currentItem = {
+      drink: this.state.drink,
+      option: this.state.option,
+      quantity: 1
+    };
+    this.props.addItem(currentItem);
   };
 
   render() {
@@ -97,7 +103,7 @@ class CoffeeDetail extends Component {
               </Picker>
             </Body>
           </ListItem>
-          <Button full danger>
+          <Button full danger onPress={this.handleClick}>
             <Text>Add</Text>
           </Button>
         </List>

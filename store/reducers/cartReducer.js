@@ -19,7 +19,8 @@ const cartReducer = (state = initialState, action) => {
     case REMOVE_ITEM:
       return {
         ...state,
-        items: state.items.filter(item => item !== action.payload)
+        items: state.items.filter(item => item !== action.payload),
+        quantity: state.quantity - action.payload.quantity
       };
     case ADD_ITEM:
       let Item_new = state.items.find(
@@ -42,7 +43,9 @@ const cartReducer = (state = initialState, action) => {
       }
     case CHECKOUT:
       return {
-        ...state
+        ...state,
+        items: [],
+        quantity: 0
       };
     default:
       return state;
