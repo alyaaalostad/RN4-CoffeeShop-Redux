@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import * as actionCreators from "../../store/actions/Cart";
 // NativeBase Components
 import {
   Thumbnail,
@@ -44,6 +44,10 @@ class CoffeeDetail extends Component {
     this.setState({
       option: value
     });
+  };
+
+  handleClick = item => {
+    this.props.addItem(item);
   };
 
   render() {
@@ -105,5 +109,15 @@ class CoffeeDetail extends Component {
 const mapStateToProps = state => ({
   coffeeReducer: state.coffeeReducer
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    addItem: item => {
+      dispatch(actionCreators.addItem(item));
+    }
+  };
+};
 
-export default connect(mapStateToProps)(CoffeeDetail);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoffeeDetail);
